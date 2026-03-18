@@ -1,0 +1,30 @@
+{
+  "name": "email",
+  "namespace": "gk",
+  "version": "0.1.0",
+  "type": "header-only",
+  "include": "include",
+  "license": "MIT",
+  "description": "Production-grade C++ header-only library for email address parsing, validation, and normalization with RFC-aware rules.",
+  "keywords": [
+    "cpp",
+    "email",
+    "email-validation",
+    "email-parser",
+    "rfc",
+    "rfc5322",
+    "validation",
+    "parser",
+    "normalization",
+    "string",
+    "header-only",
+    "vix"
+  ],
+  "repository": "https://github.com/Gaspardkirira/email",
+  "authors": [
+    {
+      "name": "Gaspard Kirira",
+      "github": "Gaspardkirira"
+    }
+  ]
+}
