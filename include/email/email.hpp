@@ -61,7 +61,7 @@
 #include <variant>
 #include <vector>
 
-namespace gk::email
+namespace email
 {
   class Address;
   class ParseResult;
@@ -414,6 +414,28 @@ namespace gk::email
                            [](const Error &e)
                            { return e.is_error(); });
       return result;
+    }
+
+    [[nodiscard]] std::string message() const
+    {
+      if (errors_.empty())
+        return "ok";
+
+      return errors_.front().message();
+    }
+
+    [[nodiscard]] int status_code() const noexcept
+    {
+      return is_valid() ? 200 : 400;
+    }
+
+    [[nodiscard]] std::vector<std::pair<std::string, std::string>> to_kvs() const
+    {
+      if (errors_.empty())
+        return {{"ok", "true"}};
+
+      return {
+          {"error", errors_.front().message()}};
     }
 
     [[nodiscard]] std::vector<Error> warnings() const

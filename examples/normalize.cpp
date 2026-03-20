@@ -1,9 +1,9 @@
 #include <iostream>
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-  auto normalized = gk::email::normalize("  User@Example.COM  ");
+  auto normalized = email::normalize("  User@Example.COM  ");
 
   if (normalized)
   {

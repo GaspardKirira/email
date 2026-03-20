@@ -1,9 +1,9 @@
 #include <iostream>
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-  auto result = gk::email::parse("User@Example.COM");
+  auto result = email::parse("User@Example.COM");
 
   if (result)
   {

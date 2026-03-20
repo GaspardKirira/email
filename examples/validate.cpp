@@ -1,9 +1,9 @@
 #include <iostream>
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-  auto result = gk::email::validate("bad..email@-example..com");
+  auto result = email::validate("bad..email@-example..com");
 
   if (!result)
   {

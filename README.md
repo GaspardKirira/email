@@ -43,7 +43,7 @@ giving you correctness, clarity, and extensibility.
 **Example:**
 
 ```cpp
-auto result = gk::email::parse("User@Example.COM");
+auto result = email::parse("User@Example.COM");
 
 if (result) {
     auto addr = result.address();
@@ -101,11 +101,11 @@ Add the `include/` directory to your project.
 ### Basic validation
 
 ```cpp
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-    if (gk::email::is_valid("user@example.com"))
+    if (email::is_valid("user@example.com"))
         std::cout << "Valid\n";
 }
 ```
@@ -113,11 +113,11 @@ int main()
 ### Parse an email
 
 ```cpp
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-    auto result = gk::email::parse("User@Example.COM");
+    auto result = email::parse("User@Example.COM");
 
     if (result)
     {
@@ -131,11 +131,11 @@ int main()
 ### Normalize
 
 ```cpp
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-    auto norm = gk::email::normalize("  User@Example.COM  ");
+    auto norm = email::normalize("  User@Example.COM  ");
     std::cout << *norm << "\n"; // User@example.com
 }
 ```
@@ -143,11 +143,11 @@ int main()
 ### Validation with errors
 
 ```cpp
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
-    auto result = gk::email::validate("bad..email@-example..com");
+    auto result = email::validate("bad..email@-example..com");
 
     for (auto& err : result.errors())
     {
@@ -159,12 +159,12 @@ int main()
 ### Parse + validate + normalize
 
 ```cpp
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 int main()
 {
     auto [addr, validation] =
-        gk::email::parse_and_validate("User@Example.COM");
+        email::parse_and_validate("User@Example.COM");
 
     if (validation)
         std::cout << addr.to_string() << "\n";
@@ -174,14 +174,14 @@ int main()
 ### Extract parts
 
 ```cpp
-auto local  = gk::email::local_part("user@example.com");
-auto domain = gk::email::domain_part("user@example.com");
+auto local  = email::local_part("user@example.com");
+auto domain = email::domain_part("user@example.com");
 ```
 
 ### Display name support
 
 ```cpp
-auto result = gk::email::parse("John Doe <user@example.com>");
+auto result = email::parse("John Doe <user@example.com>");
 
 if (result)
 {
@@ -193,7 +193,7 @@ if (result)
 ### Custom validation hooks
 
 ```cpp
-struct MyDns : gk::email::DnsValidationHook
+struct MyDns : email::DnsValidationHook
 {
     bool has_mx_record(std::string_view domain) const override
     {
@@ -203,7 +203,7 @@ struct MyDns : gk::email::DnsValidationHook
 
 MyDns dns;
 
-auto result = gk::email::validate("user@example.com", {}, &dns);
+auto result = email::validate("user@example.com", {}, &dns);
 ```
 
 ---
@@ -213,8 +213,6 @@ auto result = gk::email::validate("user@example.com", {}, &dns);
 ### Free functions
 
 ```cpp
-using namespace gk;
-
 email::parse(input)                      // → ParseResult
 email::try_parse(input)                  // → std::optional<Address>
 email::validate(input)                   // → ValidationResult

@@ -10,12 +10,10 @@
  * Exit code 1 = at least one failure.
  */
 
-#include <gk/email/email.hpp>
+#include <email/email.hpp>
 
 #include <iostream>
 #include <string>
-
-using namespace gk;
 
 namespace test
 {
