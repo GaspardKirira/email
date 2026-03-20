@@ -1,7 +1,7 @@
 #include <iostream>
-#include <email/email.hpp>
+#include <gk/email/email.hpp>
 
-struct DummyDns : email::DnsValidationHook
+struct DummyDns : gk::email::DnsValidationHook
 {
   bool has_mx_record(std::string_view domain) const override
   {
@@ -9,7 +9,7 @@ struct DummyDns : email::DnsValidationHook
   }
 };
 
-struct DisposableCheck : email::DisposableEmailHook
+struct DisposableCheck : gk::email::DisposableEmailHook
 {
   bool is_disposable(std::string_view domain) const override
   {
@@ -22,9 +22,9 @@ int main()
   DummyDns dns;
   DisposableCheck disposable;
 
-  email::Address addr{"user", "tempmail.com"};
+  gk::email::Address addr{"user", "tempmail.com"};
 
-  auto result = email::validate(addr, {}, &dns, &disposable);
+  auto result = gk::email::validate(addr, {}, &dns, &disposable);
 
   for (auto &e : result.errors())
   {

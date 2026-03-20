@@ -61,7 +61,7 @@
 #include <variant>
 #include <vector>
 
-namespace email
+namespace gk::email
 {
   class Address;
   class ParseResult;
